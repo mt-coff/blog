@@ -1,5 +1,10 @@
 declare const graphql: (query: TemplateStringsArray) => void;
 
+declare module "tailwind.macro" {
+  const tw: (r: TemplateStringsArray) => any;
+  export default tw;
+}
+
 declare module "@mdx-js/react" {
   import * as React from "react";
   type ComponentType =
