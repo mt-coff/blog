@@ -596,6 +596,8 @@ export type FileFieldsEnum =
   'childMdx___frontmatter___date' |
   'childMdx___frontmatter___status' |
   'childMdx___frontmatter___tags' |
+  'childMdx___frontmatter___description' |
+  'childMdx___frontmatter___keywords' |
   'childMdx___body' |
   'childMdx___excerpt' |
   'childMdx___headings' |
@@ -833,6 +835,8 @@ export type MdxFieldsEnum =
   'frontmatter___date' |
   'frontmatter___status' |
   'frontmatter___tags' |
+  'frontmatter___description' |
+  'frontmatter___keywords' |
   'body' |
   'excerpt' |
   'headings' |
@@ -956,6 +960,8 @@ export type MdxFrontmatter = {
   date?: Maybe<Scalars['Date']>,
   status?: Maybe<Scalars['String']>,
   tags?: Maybe<Array<Maybe<Scalars['String']>>>,
+  description?: Maybe<Scalars['String']>,
+  keywords?: Maybe<Array<Maybe<Scalars['String']>>>,
 };
 
 
@@ -972,6 +978,8 @@ export type MdxFrontmatterFilterInput = {
   date?: Maybe<DateQueryOperatorInput>,
   status?: Maybe<StringQueryOperatorInput>,
   tags?: Maybe<StringQueryOperatorInput>,
+  description?: Maybe<StringQueryOperatorInput>,
+  keywords?: Maybe<StringQueryOperatorInput>,
 };
 
 export type MdxGroupConnection = {
@@ -1468,31 +1476,137 @@ export type SitePageContextFilterInput = {
 };
 
 export type SitePageContextPost = {
+  next?: Maybe<SitePageContextPostNext>,
+  previous?: Maybe<SitePageContextPostPrevious>,
   node?: Maybe<SitePageContextPostNode>,
 };
 
 export type SitePageContextPostFilterInput = {
+  next?: Maybe<SitePageContextPostNextFilterInput>,
+  previous?: Maybe<SitePageContextPostPreviousFilterInput>,
   node?: Maybe<SitePageContextPostNodeFilterInput>,
+};
+
+export type SitePageContextPostNext = {
+  frontmatter?: Maybe<SitePageContextPostNextFrontmatter>,
+};
+
+export type SitePageContextPostNextFilterInput = {
+  frontmatter?: Maybe<SitePageContextPostNextFrontmatterFilterInput>,
+};
+
+export type SitePageContextPostNextFrontmatter = {
+  path?: Maybe<Scalars['String']>,
+  title?: Maybe<Scalars['String']>,
+};
+
+export type SitePageContextPostNextFrontmatterFilterInput = {
+  path?: Maybe<StringQueryOperatorInput>,
+  title?: Maybe<StringQueryOperatorInput>,
 };
 
 export type SitePageContextPostNode = {
   id?: Maybe<Scalars['String']>,
   body?: Maybe<Scalars['String']>,
+  tableOfContents?: Maybe<SitePageContextPostNodeTableOfContents>,
+  excerpt?: Maybe<Scalars['String']>,
   frontmatter?: Maybe<SitePageContextPostNodeFrontmatter>,
 };
 
 export type SitePageContextPostNodeFilterInput = {
   id?: Maybe<StringQueryOperatorInput>,
   body?: Maybe<StringQueryOperatorInput>,
+  tableOfContents?: Maybe<SitePageContextPostNodeTableOfContentsFilterInput>,
+  excerpt?: Maybe<StringQueryOperatorInput>,
   frontmatter?: Maybe<SitePageContextPostNodeFrontmatterFilterInput>,
 };
 
 export type SitePageContextPostNodeFrontmatter = {
+  date?: Maybe<Scalars['Date']>,
+  description?: Maybe<Scalars['String']>,
+  keywords?: Maybe<Array<Maybe<Scalars['String']>>>,
   path?: Maybe<Scalars['String']>,
+  status?: Maybe<Scalars['String']>,
+  tags?: Maybe<Array<Maybe<Scalars['String']>>>,
+  title?: Maybe<Scalars['String']>,
 };
 
 export type SitePageContextPostNodeFrontmatterFilterInput = {
+  date?: Maybe<DateQueryOperatorInput>,
+  description?: Maybe<StringQueryOperatorInput>,
+  keywords?: Maybe<StringQueryOperatorInput>,
   path?: Maybe<StringQueryOperatorInput>,
+  status?: Maybe<StringQueryOperatorInput>,
+  tags?: Maybe<StringQueryOperatorInput>,
+  title?: Maybe<StringQueryOperatorInput>,
+};
+
+export type SitePageContextPostNodeTableOfContents = {
+  items?: Maybe<Array<Maybe<SitePageContextPostNodeTableOfContentsItems>>>,
+};
+
+export type SitePageContextPostNodeTableOfContentsFilterInput = {
+  items?: Maybe<SitePageContextPostNodeTableOfContentsItemsFilterListInput>,
+};
+
+export type SitePageContextPostNodeTableOfContentsItems = {
+  url?: Maybe<Scalars['String']>,
+  title?: Maybe<Scalars['String']>,
+  items?: Maybe<Array<Maybe<SitePageContextPostNodeTableOfContentsItemsItems>>>,
+};
+
+export type SitePageContextPostNodeTableOfContentsItemsFilterInput = {
+  url?: Maybe<StringQueryOperatorInput>,
+  title?: Maybe<StringQueryOperatorInput>,
+  items?: Maybe<SitePageContextPostNodeTableOfContentsItemsItemsFilterListInput>,
+};
+
+export type SitePageContextPostNodeTableOfContentsItemsFilterListInput = {
+  elemMatch?: Maybe<SitePageContextPostNodeTableOfContentsItemsFilterInput>,
+};
+
+export type SitePageContextPostNodeTableOfContentsItemsItems = {
+  items?: Maybe<Array<Maybe<SitePageContextPostNodeTableOfContentsItemsItemsItems>>>,
+};
+
+export type SitePageContextPostNodeTableOfContentsItemsItemsFilterInput = {
+  items?: Maybe<SitePageContextPostNodeTableOfContentsItemsItemsItemsFilterListInput>,
+};
+
+export type SitePageContextPostNodeTableOfContentsItemsItemsFilterListInput = {
+  elemMatch?: Maybe<SitePageContextPostNodeTableOfContentsItemsItemsFilterInput>,
+};
+
+export type SitePageContextPostNodeTableOfContentsItemsItemsItems = {
+  url?: Maybe<Scalars['String']>,
+  title?: Maybe<Scalars['String']>,
+};
+
+export type SitePageContextPostNodeTableOfContentsItemsItemsItemsFilterInput = {
+  url?: Maybe<StringQueryOperatorInput>,
+  title?: Maybe<StringQueryOperatorInput>,
+};
+
+export type SitePageContextPostNodeTableOfContentsItemsItemsItemsFilterListInput = {
+  elemMatch?: Maybe<SitePageContextPostNodeTableOfContentsItemsItemsItemsFilterInput>,
+};
+
+export type SitePageContextPostPrevious = {
+  frontmatter?: Maybe<SitePageContextPostPreviousFrontmatter>,
+};
+
+export type SitePageContextPostPreviousFilterInput = {
+  frontmatter?: Maybe<SitePageContextPostPreviousFrontmatterFilterInput>,
+};
+
+export type SitePageContextPostPreviousFrontmatter = {
+  path?: Maybe<Scalars['String']>,
+  title?: Maybe<Scalars['String']>,
+};
+
+export type SitePageContextPostPreviousFrontmatterFilterInput = {
+  path?: Maybe<StringQueryOperatorInput>,
+  title?: Maybe<StringQueryOperatorInput>,
 };
 
 export type SitePageEdge = {
@@ -1595,6 +1709,7 @@ export type SitePageFieldsEnum =
   'isCreatedByStatefulCreatePages' |
   'context___post___node___id' |
   'context___post___node___body' |
+  'context___post___node___excerpt' |
   'context___id' |
   'pluginCreator___id' |
   'pluginCreator___parent___id' |
@@ -1640,6 +1755,9 @@ export type SitePageFieldsEnum =
   'pluginCreator___pluginOptions___fileName' |
   'pluginCreator___pluginOptions___name' |
   'pluginCreator___pluginOptions___path' |
+  'pluginCreator___pluginOptions___extensions' |
+  'pluginCreator___pluginOptions___gatsbyRemarkPlugins' |
+  'pluginCreator___pluginOptions___gatsbyRemarkPlugins___resolve' |
   'pluginCreator___pluginOptions___pathCheck' |
   'pluginCreator___nodeAPIs' |
   'pluginCreator___browserAPIs' |
@@ -1829,6 +1947,14 @@ export type SitePluginFieldsEnum =
   'pluginOptions___fileName' |
   'pluginOptions___name' |
   'pluginOptions___path' |
+  'pluginOptions___extensions' |
+  'pluginOptions___gatsbyRemarkPlugins' |
+  'pluginOptions___gatsbyRemarkPlugins___resolve' |
+  'pluginOptions___gatsbyRemarkPlugins___options___classPrefix' |
+  'pluginOptions___gatsbyRemarkPlugins___options___showLineNumbers' |
+  'pluginOptions___gatsbyRemarkPlugins___options___noInlineHighlight' |
+  'pluginOptions___gatsbyRemarkPlugins___options___offsetY' |
+  'pluginOptions___gatsbyRemarkPlugins___options___className' |
   'pluginOptions___pathCheck' |
   'nodeAPIs' |
   'browserAPIs' |
@@ -1945,6 +2071,8 @@ export type SitePluginPluginOptions = {
   fileName?: Maybe<Scalars['String']>,
   name?: Maybe<Scalars['String']>,
   path?: Maybe<Scalars['String']>,
+  extensions?: Maybe<Array<Maybe<Scalars['String']>>>,
+  gatsbyRemarkPlugins?: Maybe<Array<Maybe<SitePluginPluginOptionsGatsbyRemarkPlugins>>>,
   pathCheck?: Maybe<Scalars['Boolean']>,
 };
 
@@ -1952,7 +2080,39 @@ export type SitePluginPluginOptionsFilterInput = {
   fileName?: Maybe<StringQueryOperatorInput>,
   name?: Maybe<StringQueryOperatorInput>,
   path?: Maybe<StringQueryOperatorInput>,
+  extensions?: Maybe<StringQueryOperatorInput>,
+  gatsbyRemarkPlugins?: Maybe<SitePluginPluginOptionsGatsbyRemarkPluginsFilterListInput>,
   pathCheck?: Maybe<BooleanQueryOperatorInput>,
+};
+
+export type SitePluginPluginOptionsGatsbyRemarkPlugins = {
+  resolve?: Maybe<Scalars['String']>,
+  options?: Maybe<SitePluginPluginOptionsGatsbyRemarkPluginsOptions>,
+};
+
+export type SitePluginPluginOptionsGatsbyRemarkPluginsFilterInput = {
+  resolve?: Maybe<StringQueryOperatorInput>,
+  options?: Maybe<SitePluginPluginOptionsGatsbyRemarkPluginsOptionsFilterInput>,
+};
+
+export type SitePluginPluginOptionsGatsbyRemarkPluginsFilterListInput = {
+  elemMatch?: Maybe<SitePluginPluginOptionsGatsbyRemarkPluginsFilterInput>,
+};
+
+export type SitePluginPluginOptionsGatsbyRemarkPluginsOptions = {
+  classPrefix?: Maybe<Scalars['String']>,
+  showLineNumbers?: Maybe<Scalars['Boolean']>,
+  noInlineHighlight?: Maybe<Scalars['Boolean']>,
+  offsetY?: Maybe<Scalars['String']>,
+  className?: Maybe<Scalars['String']>,
+};
+
+export type SitePluginPluginOptionsGatsbyRemarkPluginsOptionsFilterInput = {
+  classPrefix?: Maybe<StringQueryOperatorInput>,
+  showLineNumbers?: Maybe<BooleanQueryOperatorInput>,
+  noInlineHighlight?: Maybe<BooleanQueryOperatorInput>,
+  offsetY?: Maybe<StringQueryOperatorInput>,
+  className?: Maybe<StringQueryOperatorInput>,
 };
 
 export type SitePluginSortInput = {
@@ -1986,3 +2146,7 @@ export type StringQueryOperatorInput = {
   glob?: Maybe<Scalars['String']>,
 };
 
+export type IndexPageQueryVariables = {};
+
+
+export type IndexPageQuery = { site: Maybe<{ siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };

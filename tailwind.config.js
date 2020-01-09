@@ -1,5 +1,8 @@
 module.exports = {
   theme: {
-    screens: {}
+    screens: {
+      tablet: "560px",
+      desktop: "960px"
+    }
   }
 };

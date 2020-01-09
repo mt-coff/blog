@@ -15,11 +15,31 @@ export const createPages: GatsbyNode["createPages"] = async ({
     {
       allMdx(sort: { fields: frontmatter___date, order: ASC }) {
         edges {
+          next {
+            frontmatter {
+              path
+              title
+            }
+          }
+          previous {
+            frontmatter {
+              path
+              title
+            }
+          }
           node {
             id
             body
+            tableOfContents(maxDepth: 10)
+            excerpt
             frontmatter {
+              date
+              description
+              keywords
               path
+              status
+              tags
+              title
             }
           }
         }
