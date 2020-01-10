@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import { Global, css } from "@emotion/core";
 import Footer from "./Footer";
 import Header from "./Header";
-import ThemeProvider from "../provider/ThemeProvider";
 import tw from "tailwind.macro";
 import styled from "@emotion/styled";
 import HelmentProvider from "../provider/HelmetProvider";
@@ -38,7 +37,7 @@ type PageTemplateProps = {
 
 const PageTemplate: FC<PageTemplateProps> = props => {
   return (
-    <ThemeProvider>
+    <>
       <HelmentProvider
         title={props.title}
         description={props.meta?.description}
@@ -48,7 +47,7 @@ const PageTemplate: FC<PageTemplateProps> = props => {
       <Header />
       <Main>{props.children}</Main>
       <Footer />
-    </ThemeProvider>
+    </>
   );
 };
 
