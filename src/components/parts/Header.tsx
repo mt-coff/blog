@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import styled from "@emotion/styled";
 import { Link } from "gatsby";
 import tw from "tailwind.macro";
+import { version } from "../../../package.json";
 
 const Header: FC = () => {
   return (
@@ -9,6 +10,7 @@ const Header: FC = () => {
       <h1 className="text-4xl">
         <Link to="/">mt_coff's blog</Link>
       </h1>
+      <small>v{version}</small>
     </HeaderBase>
   );
 };

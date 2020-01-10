@@ -15,7 +15,7 @@ type ArticleThumbnailProps = {
 };
 
 const StyledLink = styled(Link)`
-  ${tw`flex shadow-md border rounded p-2 w-full`};
+  ${tw`flex shadow-md border rounded py-2 px-3 w-full`};
 `;
 
 const ExcerptWrapper = styled.div`

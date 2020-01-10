@@ -12,8 +12,7 @@ exports.onCreateWebpackConfig = ({ getConfig }) => {
   // https://github.com/bradlc/babel-plugin-tailwind-components/issues/39#issuecomment-526892633
   const config = getConfig();
   config.node = {
-    fs: "empty",
-    module: "empty"
+    fs: "empty"
   };
 };
 

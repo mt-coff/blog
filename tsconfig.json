@@ -8,7 +8,8 @@
     "module": "commonjs",
     "target": "esnext",
     "jsx": "react",
-    "lib": ["dom", "esnext"]
+    "lib": ["dom", "esnext"],
+    "resolveJsonModule": true
   },
   "include": ["./src/**/*", "./gatsby-node/**/*", "types"]
 }

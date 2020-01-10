@@ -3,24 +3,26 @@ import React from "react";
 
 const Article: Components = {
   h1: (props: JSX.IntrinsicElements["h1"]) => (
-    <h1 className="text-3xl border-b font-semibold" {...props} />
+    <h1 className="text-3xl border-b font-semibold m-2" {...props} />
   ),
   h2: (props: JSX.IntrinsicElements["h2"]) => (
-    <h2 className="text-2xl border-b font-semibold" {...props} />
+    <h2 className="text-2xl border-b font-semibold m-2" {...props} />
   ),
   h3: (props: JSX.IntrinsicElements["h3"]) => (
-    <h3 className="text-xl border-b font-semibold" {...props} />
+    <h3 className="text-xl border-b font-semibold m-2" {...props} />
   ),
   h4: (props: JSX.IntrinsicElements["h4"]) => (
-    <h4 className="text-lg border-b font-semibold" {...props} />
+    <h4 className="text-lg border-b font-semibold m-2" {...props} />
   ),
   h5: (props: JSX.IntrinsicElements["h5"]) => (
-    <h5 className="text-base border-b font-semibold" {...props} />
+    <h5 className="text-base border-b font-semibold m-2" {...props} />
   ),
   h6: (props: JSX.IntrinsicElements["h6"]) => (
-    <h6 className="text-sm border-b font-semibold" {...props} />
+    <h6 className="text-sm border-b font-semibold m-2" {...props} />
   ),
-  p: (props: JSX.IntrinsicElements["p"]) => <p className="py-2" {...props} />,
+  p: (props: JSX.IntrinsicElements["p"]) => (
+    <p className="py-2 leading-relax" {...props} />
+  ),
   strong: (props: JSX.IntrinsicElements["strong"]) => (
     <strong className="font-semibold" {...props} />
   ),
@@ -38,6 +40,9 @@ const Article: Components = {
   ),
   blockquote: (props: JSX.IntrinsicElements["blockquote"]) => (
     <blockquote className="px-4" {...props} />
+  ),
+  inlineCode: (props: JSX.IntrinsicElements["code"]) => (
+    <code className="text-red-400" {...props} />
   )
 };
 

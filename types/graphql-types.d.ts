@@ -595,8 +595,8 @@ export type FileFieldsEnum =
   'childMdx___frontmatter___path' |
   'childMdx___frontmatter___date' |
   'childMdx___frontmatter___status' |
-  'childMdx___frontmatter___tags' |
   'childMdx___frontmatter___description' |
+  'childMdx___frontmatter___tags' |
   'childMdx___frontmatter___keywords' |
   'childMdx___body' |
   'childMdx___excerpt' |
@@ -834,8 +834,8 @@ export type MdxFieldsEnum =
   'frontmatter___path' |
   'frontmatter___date' |
   'frontmatter___status' |
-  'frontmatter___tags' |
   'frontmatter___description' |
+  'frontmatter___tags' |
   'frontmatter___keywords' |
   'body' |
   'excerpt' |
@@ -959,8 +959,8 @@ export type MdxFrontmatter = {
   path?: Maybe<Scalars['String']>,
   date?: Maybe<Scalars['Date']>,
   status?: Maybe<Scalars['String']>,
-  tags?: Maybe<Array<Maybe<Scalars['String']>>>,
   description?: Maybe<Scalars['String']>,
+  tags?: Maybe<Array<Maybe<Scalars['String']>>>,
   keywords?: Maybe<Array<Maybe<Scalars['String']>>>,
 };
 
@@ -977,8 +977,8 @@ export type MdxFrontmatterFilterInput = {
   path?: Maybe<StringQueryOperatorInput>,
   date?: Maybe<DateQueryOperatorInput>,
   status?: Maybe<StringQueryOperatorInput>,
-  tags?: Maybe<StringQueryOperatorInput>,
   description?: Maybe<StringQueryOperatorInput>,
+  tags?: Maybe<StringQueryOperatorInput>,
   keywords?: Maybe<StringQueryOperatorInput>,
 };
 
@@ -1476,33 +1476,11 @@ export type SitePageContextFilterInput = {
 };
 
 export type SitePageContextPost = {
-  next?: Maybe<SitePageContextPostNext>,
-  previous?: Maybe<SitePageContextPostPrevious>,
   node?: Maybe<SitePageContextPostNode>,
 };
 
 export type SitePageContextPostFilterInput = {
-  next?: Maybe<SitePageContextPostNextFilterInput>,
-  previous?: Maybe<SitePageContextPostPreviousFilterInput>,
   node?: Maybe<SitePageContextPostNodeFilterInput>,
-};
-
-export type SitePageContextPostNext = {
-  frontmatter?: Maybe<SitePageContextPostNextFrontmatter>,
-};
-
-export type SitePageContextPostNextFilterInput = {
-  frontmatter?: Maybe<SitePageContextPostNextFrontmatterFilterInput>,
-};
-
-export type SitePageContextPostNextFrontmatter = {
-  path?: Maybe<Scalars['String']>,
-  title?: Maybe<Scalars['String']>,
-};
-
-export type SitePageContextPostNextFrontmatterFilterInput = {
-  path?: Maybe<StringQueryOperatorInput>,
-  title?: Maybe<StringQueryOperatorInput>,
 };
 
 export type SitePageContextPostNode = {
@@ -1566,10 +1544,14 @@ export type SitePageContextPostNodeTableOfContentsItemsFilterListInput = {
 };
 
 export type SitePageContextPostNodeTableOfContentsItemsItems = {
+  url?: Maybe<Scalars['String']>,
+  title?: Maybe<Scalars['String']>,
   items?: Maybe<Array<Maybe<SitePageContextPostNodeTableOfContentsItemsItemsItems>>>,
 };
 
 export type SitePageContextPostNodeTableOfContentsItemsItemsFilterInput = {
+  url?: Maybe<StringQueryOperatorInput>,
+  title?: Maybe<StringQueryOperatorInput>,
   items?: Maybe<SitePageContextPostNodeTableOfContentsItemsItemsItemsFilterListInput>,
 };
 
@@ -1589,24 +1571,6 @@ export type SitePageContextPostNodeTableOfContentsItemsItemsItemsFilterInput = {
 
 export type SitePageContextPostNodeTableOfContentsItemsItemsItemsFilterListInput = {
   elemMatch?: Maybe<SitePageContextPostNodeTableOfContentsItemsItemsItemsFilterInput>,
-};
-
-export type SitePageContextPostPrevious = {
-  frontmatter?: Maybe<SitePageContextPostPreviousFrontmatter>,
-};
-
-export type SitePageContextPostPreviousFilterInput = {
-  frontmatter?: Maybe<SitePageContextPostPreviousFrontmatterFilterInput>,
-};
-
-export type SitePageContextPostPreviousFrontmatter = {
-  path?: Maybe<Scalars['String']>,
-  title?: Maybe<Scalars['String']>,
-};
-
-export type SitePageContextPostPreviousFrontmatterFilterInput = {
-  path?: Maybe<StringQueryOperatorInput>,
-  title?: Maybe<StringQueryOperatorInput>,
 };
 
 export type SitePageEdge = {
@@ -1752,12 +1716,18 @@ export type SitePageFieldsEnum =
   'pluginCreator___resolve' |
   'pluginCreator___name' |
   'pluginCreator___version' |
-  'pluginCreator___pluginOptions___fileName' |
   'pluginCreator___pluginOptions___name' |
+  'pluginCreator___pluginOptions___short_name' |
+  'pluginCreator___pluginOptions___start_url' |
+  'pluginCreator___pluginOptions___background_color' |
+  'pluginCreator___pluginOptions___theme_color' |
+  'pluginCreator___pluginOptions___display' |
+  'pluginCreator___pluginOptions___icon' |
   'pluginCreator___pluginOptions___path' |
   'pluginCreator___pluginOptions___extensions' |
   'pluginCreator___pluginOptions___gatsbyRemarkPlugins' |
   'pluginCreator___pluginOptions___gatsbyRemarkPlugins___resolve' |
+  'pluginCreator___pluginOptions___fileName' |
   'pluginCreator___pluginOptions___pathCheck' |
   'pluginCreator___nodeAPIs' |
   'pluginCreator___browserAPIs' |
@@ -1944,8 +1914,13 @@ export type SitePluginFieldsEnum =
   'resolve' |
   'name' |
   'version' |
-  'pluginOptions___fileName' |
   'pluginOptions___name' |
+  'pluginOptions___short_name' |
+  'pluginOptions___start_url' |
+  'pluginOptions___background_color' |
+  'pluginOptions___theme_color' |
+  'pluginOptions___display' |
+  'pluginOptions___icon' |
   'pluginOptions___path' |
   'pluginOptions___extensions' |
   'pluginOptions___gatsbyRemarkPlugins' |
@@ -1955,6 +1930,7 @@ export type SitePluginFieldsEnum =
   'pluginOptions___gatsbyRemarkPlugins___options___noInlineHighlight' |
   'pluginOptions___gatsbyRemarkPlugins___options___offsetY' |
   'pluginOptions___gatsbyRemarkPlugins___options___className' |
+  'pluginOptions___fileName' |
   'pluginOptions___pathCheck' |
   'nodeAPIs' |
   'browserAPIs' |
@@ -2068,20 +2044,32 @@ export type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 };
 
 export type SitePluginPluginOptions = {
-  fileName?: Maybe<Scalars['String']>,
   name?: Maybe<Scalars['String']>,
+  short_name?: Maybe<Scalars['String']>,
+  start_url?: Maybe<Scalars['String']>,
+  background_color?: Maybe<Scalars['String']>,
+  theme_color?: Maybe<Scalars['String']>,
+  display?: Maybe<Scalars['String']>,
+  icon?: Maybe<Scalars['String']>,
   path?: Maybe<Scalars['String']>,
   extensions?: Maybe<Array<Maybe<Scalars['String']>>>,
   gatsbyRemarkPlugins?: Maybe<Array<Maybe<SitePluginPluginOptionsGatsbyRemarkPlugins>>>,
+  fileName?: Maybe<Scalars['String']>,
   pathCheck?: Maybe<Scalars['Boolean']>,
 };
 
 export type SitePluginPluginOptionsFilterInput = {
-  fileName?: Maybe<StringQueryOperatorInput>,
   name?: Maybe<StringQueryOperatorInput>,
+  short_name?: Maybe<StringQueryOperatorInput>,
+  start_url?: Maybe<StringQueryOperatorInput>,
+  background_color?: Maybe<StringQueryOperatorInput>,
+  theme_color?: Maybe<StringQueryOperatorInput>,
+  display?: Maybe<StringQueryOperatorInput>,
+  icon?: Maybe<StringQueryOperatorInput>,
   path?: Maybe<StringQueryOperatorInput>,
   extensions?: Maybe<StringQueryOperatorInput>,
   gatsbyRemarkPlugins?: Maybe<SitePluginPluginOptionsGatsbyRemarkPluginsFilterListInput>,
+  fileName?: Maybe<StringQueryOperatorInput>,
   pathCheck?: Maybe<BooleanQueryOperatorInput>,
 };
 

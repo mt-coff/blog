@@ -8,9 +8,15 @@ module.exports = {
     `gatsby-plugin-emotion`,
     `gatsby-plugin-postcss`,
     {
-      resolve: `gatsby-plugin-graphql-codegen`,
+      resolve: `gatsby-plugin-manifest`,
       options: {
-        fileName: `types/graphql-types.d.ts`
+        name: `mt_coff's blog`,
+        short_name: `blog`,
+        start_url: `/`,
+        background_color: `#c0ffee`,
+        theme_color: `#eeff0c`,
+        display: `minimal-ui`,
+        icon: `src/images/mt_coff.jpg`
       }
     },
     {
@@ -39,7 +45,7 @@ module.exports = {
               inlineCodeMarker: null,
               aliases: {},
               showLineNumbers: true,
-              noInlineHighlight: false
+              noInlineHighlight: true
             }
           },
           {
@@ -50,6 +56,12 @@ module.exports = {
             }
           }
         ]
+      }
+    },
+    {
+      resolve: `gatsby-plugin-graphql-codegen`,
+      options: {
+        fileName: `types/graphql-types.d.ts`
       }
     }
   ]
