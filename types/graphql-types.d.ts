@@ -2149,4 +2149,7 @@ export type StringQueryOperatorInput = {
 export type IndexPageQueryVariables = {};
 
 
-export type IndexPageQuery = { site: Maybe<{ siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
+export type IndexPageQuery = { allMdx: { edges: Array<{ node: (
+        Pick<Mdx, 'id' | 'excerpt'>
+        & { frontmatter: Maybe<Pick<MdxFrontmatter, 'title' | 'path' | 'date' | 'tags'>> }
+      ) }> }, site: Maybe<{ siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
