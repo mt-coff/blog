@@ -42,7 +42,7 @@ const Article: Components = {
     <blockquote className="px-4" {...props} />
   ),
   inlineCode: (props: JSX.IntrinsicElements["code"]) => (
-    <code className="text-red-400" {...props} />
+    <code className="text-red-400 bg-indigo-100 px-1 rounded" {...props} />
   )
 };
 
