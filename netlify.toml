@@ -1,4 +1,0 @@
-[[redirects]]
-  from = "https://frosty-tereshkova-e1c62a.netlify.com/*"
-  to = "https://blog.mt-coff.me/:splat"
-  force = true
