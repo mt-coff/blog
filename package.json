@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "fmt": "prettier --write './{pages,components}/**/*.{js,ts,tsx,md,mdx}'"
+    "fmt": "prettier --write './{pages,components,layouts}/**/*.{js,ts,tsx,md,mdx}'"
   },
   "dependencies": {
     "next": "10.0.3",
