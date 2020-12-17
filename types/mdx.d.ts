@@ -25,6 +25,7 @@ declare module '@mdx-js/react' {
     | 'td'
     | 'thematicBreak'
     | 'tr'
+    | 'th'
     | 'ul'
   export type Components = {
     [key in ComponentType]?: React.ComponentType<any>

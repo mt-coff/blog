@@ -11,6 +11,15 @@ module.exports = {
         "mt-green": {
           DEFAULT: "#c0ffee",
         },
+        "mt-cyan": {
+          DEFAULT: "#0cffee",
+        },
+        "mt-magenta": {
+          DEFAULT: "#ff0cee",
+        },
+        "mt-yellow-green": {
+          DEFAULT: "#eeff0c",
+        },
       },
     },
   },
