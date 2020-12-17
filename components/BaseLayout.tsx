@@ -3,8 +3,8 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 type Props = {
-  className?: string
-}
+  className?: string;
+};
 
 const BaseLayout: FC<Props> = ({ children, className }) => {
   return (

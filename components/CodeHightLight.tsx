@@ -1,5 +1,5 @@
 import HightLight, { defaultProps, Language } from "prism-react-renderer";
-import github from "prism-react-renderer/themes/github"
+import github from "prism-react-renderer/themes/github";
 import { FC } from "react";
 
 type Props = {

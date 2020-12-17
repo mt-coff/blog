@@ -10,13 +10,19 @@ const components: Components = {
   blockquote: ({ children }) => (
     <blockquote className="border-l-4 pl-4 ml-4">{children}</blockquote>
   ),
-  code: ({ children, className }: {children: ReactNode, className: string}) => {
+  code: ({
+    children,
+    className,
+  }: {
+    children: ReactNode;
+    className: string;
+  }) => {
     if (!className || !className.startsWith("language-")) {
       return <code className={className}>{children}</code>;
     }
-    const language = className.replace("language-", "")
+    const language = className.replace("language-", "");
 
-    return <CodeHightLight language={language}>{children}</CodeHightLight>
+    return <CodeHightLight language={language}>{children}</CodeHightLight>;
   },
   del: ({ children }) => <del>{children}</del>,
   em: ({ children }) => <em>{children}</em>,
