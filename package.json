@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "fmt": "prettier --write './{pages,components,layouts}/**/*.{js,ts,tsx,md,mdx}'"
+    "fmt": "prettier --write './{pages,components,layouts,utils}/**/*.{js,ts,tsx,md,mdx,css}'"
   },
   "dependencies": {
     "next": "10.0.3",
@@ -18,6 +18,7 @@
     "@types/node": "^14.14.13",
     "@types/react": "^17.0.0",
     "autoprefixer": "^10.1.0",
+    "front-matter": "^4.0.2",
     "next-mdx-enhanced": "^5.0.0",
     "postcss": "^8.2.1",
     "prettier": "^2.2.1",
