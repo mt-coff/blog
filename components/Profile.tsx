@@ -1,14 +1,9 @@
 import { VFC } from "react";
 import Image from "next/image";
-type Props = {
-  className?: string;
-};
 
-const Profile: VFC<Props> = ({ className }) => {
+const Profile: VFC = () => {
   return (
-    <section
-      className={`flex items-center max-h-32 p-2 border rounded-tl-xl rounded-br-xl ${className}`}
-    >
+    <section className="flex items-center max-h-32 p-2 mx-4 border rounded-tl-xl rounded-br-xl lg:flex-grow-0">
       <Image
         className="rounded-full"
         src="/img/mt_coff.jpg"

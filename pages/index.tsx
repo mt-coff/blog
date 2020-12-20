@@ -1,8 +1,31 @@
-import { NextPage } from "next";
+import { GetServerSideProps, GetStaticProps, NextPage } from "next";
+import React from "react";
 import BaseLayout from "../components/BaseLayout";
+import Profile from "../components/Profile";
+import { getPosts } from "../utils/posts";
 
-const IndexPage: NextPage = () => {
-  return <BaseLayout>blog top</BaseLayout>;
+type Props = {
+  posts: ReturnType<GetServerSideProps>;
+};
+
+const IndexPage: NextPage<Props> = ({ posts }) => {
+  console.log(posts);
+  return (
+    <BaseLayout>
+      <section className="flex-grow max-w-screen-md w-full px-8 mb-8 lg:mb-4"></section>
+      <Profile />
+    </BaseLayout>
+  );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const posts = getPosts();
+
+  return {
+    props: {
+      posts,
+    },
+  };
 };
 
 export default IndexPage;

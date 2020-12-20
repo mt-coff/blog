@@ -1,12 +1,9 @@
 import { FC } from "react";
 import BaseLayout from "../components/BaseLayout";
 import MDX from "../components/MDX";
+import PostTitle from "../components/PostTitle";
 import Profile from "../components/Profile";
-
-type FrontMatter = {
-  title: string;
-  date: string;
-};
+import { FrontMatter } from "../types/frontMatter";
 
 type Props = {
   frontMatter: FrontMatter;
@@ -14,11 +11,12 @@ type Props = {
 
 const BlogPostLayout: FC<Props> = ({ children, frontMatter }) => {
   return (
-    <BaseLayout className="flex flex-col lg:flex-row px-4 my-8 w-full items-center lg:items-stretch lg:justify-end">
-      <article className="flex-grow max-w-screen-md w-full">
+    <BaseLayout>
+      <article className="flex-grow max-w-screen-md w-full mx-4 mb-8 lg:mb-4">
+        <PostTitle frontMatter={frontMatter} />
         <MDX>{children}</MDX>
       </article>
-      <Profile className="my-8 lg:my-0 lg:flex-grow-0" />
+      <Profile />
     </BaseLayout>
   );
 };
