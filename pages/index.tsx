@@ -1,15 +1,14 @@
-import { GetServerSideProps, GetStaticProps, NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import React from "react";
 import BaseLayout from "../components/BaseLayout";
 import Profile from "../components/Profile";
 import { getPosts } from "../utils/posts";
 
 type Props = {
-  posts: ReturnType<GetServerSideProps>;
+  posts: ReturnType<typeof getPosts>;
 };
 
 const IndexPage: NextPage<Props> = ({ posts }) => {
-  console.log(posts);
   return (
     <BaseLayout>
       <section className="flex-grow max-w-screen-md w-full px-8 mb-8 lg:mb-4"></section>
