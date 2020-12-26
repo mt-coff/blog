@@ -9,6 +9,9 @@
     "fmt": "prettier --write './{pages,components,layouts,utils}/**/*.{js,ts,tsx,md,mdx,css}'"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "next": "10.0.3",
     "prism-react-renderer": "^1.1.1",
     "react": "17.0.1",
@@ -26,7 +29,7 @@
     "tailwindcss": "^2.0.2",
     "typescript": "^4.1.3"
   },
-  "husky" : {
+  "husky": {
     "hooks": {
       "pre-commit": "npm run fmt"
     }
