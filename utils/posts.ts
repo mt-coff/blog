@@ -7,6 +7,7 @@ const postsPath = "./pages/posts";
 type POST = {
   year: string;
   month: string;
+  href: string;
 } & FrontMatter;
 
 export const getPosts = () => {
@@ -20,11 +21,12 @@ export const getPosts = () => {
         const path = `${postsPath}/${year}/${month}/${file}`;
         const post = fm(fs.readFileSync(path, "utf-8"));
         const meta = post.attributes as FrontMatter;
-        const date = new Date(meta.created);
+
         posts.push({
           ...meta,
-          year: date.getFullYear().toString(),
-          month: (date.getMonth() + 1).toString(),
+          year: year,
+          month: month,
+          href: `/posts/${year}/${month}/${file.replace(/\.mdx?$/, "")}`,
         });
       }
     }

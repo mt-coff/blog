@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import  { faCaretRight, faCaretLeft } from '@fortawesome/free-solid-svg-icons'
+import { faCaretRight, faCaretLeft } from "@fortawesome/free-solid-svg-icons";
 import { VFC } from "react";
 
 type Props = {
@@ -26,11 +26,21 @@ const Pagination: VFC<Props> = ({ current, total, toPrev, toNext }) => {
         ))}
       </ul>
       <div className="flex">
-        <button className={`w-7 mx-2 border px-2 rounded ${(1 === current) ? "text-gray-400" : ""}`} onClick={toPrev}>
-            <FontAwesomeIcon icon={faCaretLeft} />
+        <button
+          className={`w-7 mx-2 border px-2 rounded ${
+            1 === current ? "text-gray-400" : ""
+          }`}
+          onClick={toPrev}
+        >
+          <FontAwesomeIcon icon={faCaretLeft} />
         </button>
-        <button className={`w-7 mx-2 border px-2 rounded ${(current === total) ?  "text-gray-400" : ""}`} onClick={toNext}>
-            <FontAwesomeIcon icon={faCaretRight} />
+        <button
+          className={`w-7 mx-2 border px-2 rounded ${
+            current === total ? "text-gray-400" : ""
+          }`}
+          onClick={toNext}
+        >
+          <FontAwesomeIcon icon={faCaretRight} />
         </button>
       </div>
     </nav>
