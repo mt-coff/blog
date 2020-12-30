@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "fmt": "prettier --write './{pages,components,layouts,utils}/**/*.{js,ts,tsx,md,mdx,css}'"
+    "fmt": "prettier --write './{pages,components,layouts,utils,styles}/**/*.{js,ts,tsx,md,mdx,css}'"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
