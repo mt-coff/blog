@@ -8,6 +8,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        "header-blue": {
+          DEFAULT: "#00283c"
+        },
         "mt-green": {
           DEFAULT: "#c0ffee",
         },
