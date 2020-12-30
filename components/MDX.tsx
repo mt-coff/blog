@@ -42,7 +42,7 @@ const components: Components = {
   hr: ({ children }) => <hr className="my-2">{children}</hr>,
   img: ({ src, alt }) => <img src={src} alt={alt || ""} />,
   inlineCode: ({ children }) => (
-    <code className="text-mt-magenta bg-mt-yellow-green">`{children}`</code>
+    <code className="text-mt-magenta bg-mt-yellow-green px-2">{children}</code>
   ),
   table: ({ children }) => (
     <table className="border-collapse border my-6">{children}</table>
