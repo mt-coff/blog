@@ -2,7 +2,6 @@ import { FC } from "react";
 import BaseLayout from "../components/BaseLayout";
 import MDX from "../components/MDX";
 import PostTitle from "../components/PostTitle";
-import Profile from "../components/Profile";
 import { FrontMatter } from "../types/frontMatter";
 
 type Props = {
@@ -16,7 +15,6 @@ const BlogPostLayout: FC<Props> = ({ children, frontMatter }) => {
         <PostTitle frontMatter={frontMatter} />
         <MDX>{children}</MDX>
       </article>
-      <Profile />
     </BaseLayout>
   );
 };

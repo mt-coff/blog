@@ -2,7 +2,6 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import { getPosts } from "../../utils/posts";
 import BaseLayout from "../../components/BaseLayout";
-import Profile from "../../components/Profile";
 import PostListItem from "../../components/PostListItem";
 
 type Props = {
@@ -28,7 +27,6 @@ const Tags: NextPage<Props> = ({ posts }) => {
           ))}
         </ul>
       </section>
-      <Profile />
     </BaseLayout>
   );
 };

@@ -2,7 +2,6 @@ import { GetStaticProps, NextPage } from "next";
 import React, { useState } from "react";
 import BaseLayout from "../components/BaseLayout";
 import Pagination from "../components/Pagination";
-import Profile from "../components/Profile";
 import { getPosts } from "../utils/posts";
 import { useRouter } from "next/router";
 import PostListItem from "../components/PostListItem";
@@ -67,7 +66,6 @@ const IndexPage: NextPage<Props> = ({ posts }) => {
           </>
         )}
       </section>
-      <Profile />
     </BaseLayout>
   );
 };
