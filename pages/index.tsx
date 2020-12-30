@@ -5,6 +5,7 @@ import Pagination from "../components/Pagination";
 import { getPosts } from "../utils/posts";
 import { useRouter } from "next/router";
 import PostListItem from "../components/PostListItem";
+import MetaData from "../components/MetaData";
 
 type Props = {
   posts: ReturnType<typeof getPosts>;
@@ -39,34 +40,37 @@ const IndexPage: NextPage<Props> = ({ posts }) => {
   };
 
   return (
-    <BaseLayout>
-      <section className="flex-grow max-w-screen-md w-full px-8 mb-8 lg:mb-4">
-        {splitPosts.length === 0 ? (
-          <p className="text-center">記事が投稿されていません</p>
-        ) : (
-          <>
-            <ul className="flex flex-grow flex-col min-h-full">
-              {splitPosts[currentPageNum - 1].map((post, idx) => (
-                <PostListItem
-                  key={idx}
-                  title={post.title}
-                  created={post.created}
-                  href={post.href}
-                  tags={post.tags}
-                />
-              ))}
-            </ul>
-            <Pagination
-              total={splitPosts.length}
-              current={currentPageNum}
-              perPage={PER_PAGE}
-              toNext={toNext}
-              toPrev={toPrev}
-            />
-          </>
-        )}
-      </section>
-    </BaseLayout>
+    <>
+      <MetaData />
+      <BaseLayout>
+        <section className="flex-grow max-w-screen-md w-full px-8 mb-8 lg:mb-4">
+          {splitPosts.length === 0 ? (
+            <p className="text-center">記事が投稿されていません</p>
+          ) : (
+            <>
+              <ul className="flex flex-grow flex-col min-h-full">
+                {splitPosts[currentPageNum - 1].map((post, idx) => (
+                  <PostListItem
+                    key={idx}
+                    title={post.title}
+                    created={post.created}
+                    href={post.href}
+                    tags={post.tags}
+                  />
+                ))}
+              </ul>
+              <Pagination
+                total={splitPosts.length}
+                current={currentPageNum}
+                perPage={PER_PAGE}
+                toNext={toNext}
+                toPrev={toPrev}
+              />
+            </>
+          )}
+        </section>
+      </BaseLayout>
+    </>
   );
 };
 
