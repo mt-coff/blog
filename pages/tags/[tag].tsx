@@ -1,5 +1,4 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { useRouter } from "next/router";
 import { getPosts } from "../../utils/posts";
 import BaseLayout from "../../components/BaseLayout";
 import PostListItem from "../../components/PostListItem";
@@ -9,9 +8,6 @@ type Props = {
 };
 
 const Tags: NextPage<Props> = ({ posts }) => {
-  const router = useRouter();
-  const { tag } = router.query;
-
   return (
     <BaseLayout>
       <section className="flex-grow max-w-screen-md w-full px-8 mb-8 lg:mb-4">
