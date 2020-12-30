@@ -13,7 +13,7 @@ const Tags: NextPage<Props> = ({ posts }) => {
     <>
       <MetaData />
       <BaseLayout>
-        <section className="flex-grow max-w-screen-md w-full px-8 mb-8 lg:mb-4">
+        <section className="flex-grow max-w-screen-md w-full px-8 mb-8">
           <ul>
             {posts.map((post, idx) => (
               <PostListItem
@@ -46,7 +46,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const posts = getPosts();
   const tags = posts.map((post) => post.tags).flat();
   const tagPaths = tags.map((tag) => ({ params: { tag: encodeURI(tag) } }));
-  console.log(tagPaths);
 
   return {
     paths: tagPaths,

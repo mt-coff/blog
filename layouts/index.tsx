@@ -14,7 +14,7 @@ const BlogPostLayout: FC<Props> = ({ children, frontMatter }) => {
     <>
       <MetaData title={frontMatter.title} />
       <BaseLayout>
-        <article className="flex-grow max-w-screen-md w-full mx-4 mb-8 lg:mb-4">
+        <article className="flex-grow max-w-screen-md w-full mx-4 mb-8 px-4 md:px-0">
           <PostTitle frontMatter={frontMatter} />
           <MDX>{children}</MDX>
         </article>

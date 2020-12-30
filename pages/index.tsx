@@ -43,7 +43,7 @@ const IndexPage: NextPage<Props> = ({ posts }) => {
     <>
       <MetaData />
       <BaseLayout>
-        <section className="flex-grow max-w-screen-md w-full px-8 mb-8 lg:mb-4">
+        <section className="flex-grow max-w-screen-md w-full px-8 mb-8">
           {splitPosts.length === 0 ? (
             <p className="text-center">記事が投稿されていません</p>
           ) : (
