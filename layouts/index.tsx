@@ -14,7 +14,7 @@ const BlogPostLayout: FC<Props> = ({ children, frontMatter }) => {
     <>
       <MetaData
         title={frontMatter.title}
-        image={`/img/${frontMatter.href}.png`}
+        image={`img/${frontMatter.__resourcePath.replace(/\.mdx?$/, ".png")}`}
       />
       <BaseLayout>
         <article className="flex-grow max-w-screen-md w-full mx-4 mb-8 px-4 md:px-0">
