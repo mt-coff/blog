@@ -10,7 +10,6 @@ type Props = {
 };
 
 const BlogPostLayout: FC<Props> = ({ children, frontMatter }) => {
-  console.log(frontMatter)
   return (
     <>
       <MetaData
