@@ -1,11 +1,11 @@
 module.exports = {
-  purge: false,
+  purge: ["./components/**/*.{js,jsx,ts,tsx}", "./pages/**/*.{js,jsx,ts,tsx}"],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       colors: {
         "header-blue": {
-          DEFAULT: "#00283c"
+          DEFAULT: "#00283c",
         },
         "mt-green": {
           DEFAULT: "#c0ffee",
