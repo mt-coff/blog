@@ -26,7 +26,14 @@ const main = async () => {
   }
   const title = await question("タイトルを入力:");
   const tagsStr = await question("タグを空白区切りで入力:");
-  const created = new Date().toISOString().replace(/T.*/, "");
+  const created = new Date()
+    .toLocaleString("ja-JP", {
+      timeZone: "Asia/Tokyo",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    })
+    .replace(/\//g, "-");
   const template = buildPostTemplate(title, tagsStr.split(" "), created);
   const fileFullPath = path.join(
     dirname,
