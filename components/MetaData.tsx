@@ -4,9 +4,10 @@ import { FC } from "react";
 
 type Props = {
   title?: string;
+  image?: string;
 };
 
-const MetaData: FC<Props> = ({ title }) => {
+const MetaData: FC<Props> = ({ title, image }) => {
   const router = useRouter();
 
   return (
@@ -23,7 +24,10 @@ const MetaData: FC<Props> = ({ title }) => {
       />
       <meta property="og:description" content="mt-coff's blog" />
       <meta property="og:site_name" content="mt-coff's blog" />
-      {/* <meta property="og:image" content=""/> */}
+      <meta
+        property="og:image"
+        content={image ? `https://blog.mt-coff.me/${image}` : ""}
+      />
       <title>{`mt-coff's blog${title ? " | " + title : ""}`}</title>
     </Head>
   );

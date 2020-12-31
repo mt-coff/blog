@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "fmt": "prettier --write './{pages,components,layouts,utils,styles}/**/*.{js,ts,tsx,md,mdx,css}'"
+    "fmt": "prettier --write './{pages,components,layouts,utils,styles,scripts}/**/*.{js,ts,tsx,md,mdx,css,mjs}'"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
@@ -21,6 +21,7 @@
     "@types/node": "^14.14.13",
     "@types/react": "^17.0.0",
     "autoprefixer": "^10.1.0",
+    "canvas": "^2.6.1",
     "front-matter": "^4.0.2",
     "husky": "^4.3.6",
     "next-mdx-enhanced": "^5.0.0",
@@ -31,7 +32,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run fmt"
+      "pre-commit": "npm run fmt && node scripts/gen-ogp.mjs && git add public"
     }
   }
 }
