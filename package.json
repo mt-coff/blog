@@ -2,7 +2,9 @@
   "name": "blog",
   "private": true,
   "scripts": {
+    "predev": "node src/scripts/runGenerate.mjs",
     "dev": "next dev",
+    "prebuild": "node src/scripts/runGenerate.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -23,9 +25,11 @@
   },
   "devDependencies": {
     "@types/node": "16.11.7",
+    "@types/node-fetch": "^3.0.3",
     "@types/react": "17.0.34",
     "eslint": "7.32.0",
     "eslint-config-next": "12.0.3",
+    "node-fetch": "^3.1.0",
     "prettier": "^2.4.1",
     "typescript": "4.4.4"
   }

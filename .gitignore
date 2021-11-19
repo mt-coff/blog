@@ -38,3 +38,7 @@ yarn-error.log*
 
 # env
 .env
+.envrc
+
+# generated file
+/src/data
