@@ -1,8 +1,8 @@
-import { generateCategories } from "./generate-categories.mjs";
-import fetch from "node-fetch";
+import { generateJSON } from "./generate-json.mjs";
 
 const main = () => {
-  generateCategories();
+  generateJSON("categories");
+  generateJSON("tags");
 };
 
 main();
