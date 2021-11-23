@@ -11,7 +11,10 @@ export const getPosts = async ({
   limit?: number;
   filters?: string;
 }) => {
-  const params = new URLSearchParams({ limit: limit.toString() });
+  const params = new URLSearchParams({
+    limit: limit.toString(),
+    orders: "-publishedAt",
+  });
   if (filters) {
     params.append("filters", filters);
   }
