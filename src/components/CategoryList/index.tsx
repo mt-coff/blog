@@ -22,12 +22,18 @@ export const CategoryList = () => {
               listStyleType="none"
               textAlign="left"
               mx={4}
-              py={2}
               borderBottom="solid 1px"
               borderColor="gray.200"
             >
               <NextLink href={`/categories/${category.id}`}>
-                <Link display="flex" alignItems="center" textDecoration="none">
+                <Link
+                  display="flex"
+                  alignItems="center"
+                  p={1}
+                  my={1}
+                  borderRadius="md"
+                  _hover={{ textDecor: "none", bg: "gray.300" }}
+                >
                   <Icon as={MdFolder} mr={1} />
                   {category.name}
                 </Link>
