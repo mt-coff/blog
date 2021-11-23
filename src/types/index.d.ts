@@ -1,12 +1,17 @@
 type Post = {
   id: string;
   title: string;
-  tags?: string[];
-  category?: Category;
+  tags?: Tag[];
+  category: Category;
   publishedAt: string;
 };
 
 type Category = {
+  id: string;
+  name: string;
+};
+
+type Tag = {
   id: string;
   name: string;
 };
