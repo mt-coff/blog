@@ -1,6 +1,6 @@
 import { microCmsApi } from "@/utils/microCmsApi";
 
-type PostResponse = {
+type PostsResponse = {
   contents: Post[];
 };
 
@@ -18,7 +18,7 @@ export const getPosts = async ({
   if (filters) {
     params.append("filters", filters);
   }
-  const { contents } = await microCmsApi<PostResponse>(
+  const { contents } = await microCmsApi<PostsResponse>(
     `/posts?${params.toString()}`,
     "GET"
   );

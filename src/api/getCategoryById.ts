@@ -1,9 +1,9 @@
 import { microCmsApi } from "@/utils/microCmsApi";
 
-type CategoriesResponse = Category;
+type CategoryResponse = Category;
 
 export const getCategoryById = async (id: string) => {
-  const category = await microCmsApi<CategoriesResponse>(
+  const category = await microCmsApi<CategoryResponse>(
     `/categories/${id}`,
     "GET"
   );
