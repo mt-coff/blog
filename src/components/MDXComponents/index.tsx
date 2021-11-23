@@ -9,8 +9,9 @@ import {
 
 type Props = { children: string };
 
-export const MDXComponents = () => ({
-  h1: (props: Props) => <Heading as="h1" size="2xl" py={2} {...props} />,
+export const MDXComponents = (title?: string) => ({
+  h1: (props: Props) =>
+    !title && <Heading as="h1" size="2xl" py={2} {...props} />,
   h2: (props: Props) => <Heading as="h2" size="xl" py={2} {...props} />,
   h3: (props: Props) => <Heading as="h3" size="lg" py={2} {...props} />,
   h4: (props: Props) => <Heading as="h4" size="md" py={2} {...props} />,

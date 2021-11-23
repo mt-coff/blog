@@ -1,6 +1,7 @@
 type Post = {
   id: string;
   title: string;
+  body: string;
   tags?: Tag[];
   category: Category;
   publishedAt: string;
