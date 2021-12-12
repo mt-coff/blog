@@ -20,6 +20,10 @@ export const directorySetup = async (targetPath) => {
       console.log(`${path.basename(targetPath)} has been directory created!`);
       return;
     }
+    if (error.code === "EEXIST") {
+      console.log(`${path.basename(targetPath)} already exists.`);
+      return;
+    }
     console.error(`Failed to make the directory.\n${error}`);
     exit(-1);
   }

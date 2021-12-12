@@ -9,12 +9,12 @@ type Props = {
 };
 
 export const PostListItem = ({ post }: Props) => {
-  const { id, tags, title, publishedAt, category } = post;
+  const { tags, title, created, category, filename } = post;
 
   return (
     <Box borderBottom="solid 1px" borderColor="gray.200" p="2" mb="4">
       <Heading as="h2" size="lg" mb={4}>
-        <NextLink href={`/posts/${id}`}>
+        <NextLink href={`/posts/${filename}`}>
           <Link _hover={{ textDecor: "none" }}>{title}</Link>
         </NextLink>
       </Heading>
@@ -22,21 +22,21 @@ export const PostListItem = ({ post }: Props) => {
         <Flex direction="row" alignItems="flex-end" padding={1}>
           <Text fontSize="xs">
             <Icon as={MdEditCalendar} mr={1} />
-            {formatDate(publishedAt)}
+            {formatDate(created)}
           </Text>
-          <NextLink href={`/categories/${category.id}`}>
+          <NextLink href={`/categories/${category || "未分類"}`}>
             <Link fontSize="xs" _hover={{ textDecor: "none" }}>
               <Icon as={MdFolder} ml={2} mr={1} />
-              {category.name}
+              {category || "未分類"}
             </Link>
           </NextLink>
         </Flex>
         <Flex direction="row" alignItems="flex-end" padding={1}>
           {tags?.map((tag) => (
-            <NextLink href={`/tags/${tag.id}`} key={tag.id}>
+            <NextLink href={`/tags/${tag}`} key={tag}>
               <Link _hover={{ textDecor: "none" }}>
                 <Tag mr="1" size="sm">
-                  {tag.name}
+                  {tag}
                 </Tag>
               </Link>
             </NextLink>

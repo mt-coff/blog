@@ -1,18 +1,18 @@
 type Post = {
-  id: string;
   title: string;
-  body: string;
-  tags?: Tag[];
-  category: Category;
-  publishedAt: string;
+  content: string;
+  tags?: string[];
+  category?: string;
+  created: string;
+  filename: string;
 };
 
-type Category = {
-  id: string;
-  name: string;
-};
+// type Category = {
+//   id: string;
+//   name: string;
+// };
 
-type Tag = {
-  id: string;
-  name: string;
+// type Tag = {
+//   id: string;
+//   name: string;
 };

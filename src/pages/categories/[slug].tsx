@@ -1,21 +1,19 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { PostList } from "@/components/PostList";
-import { getCategories } from "@/api/getCategories";
-import { getPosts } from "@/api/getPosts";
-import { ParsedUrlQuery } from "querystring";
-import { getCategoryById } from "@/api/getCategoryById";
+import { getAllCategories, getAllPosts } from "@/utils/mdxUtils";
 import { Heading } from "@chakra-ui/react";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { ParsedUrlQuery } from "querystring";
 
 type Props = {
-  categoryName: string;
+  category: string;
   posts: Post[];
 };
 
-const CategoryPage: NextPage<Props> = ({ categoryName, posts }) => {
+const CategoryPage: NextPage<Props> = ({ category, posts }) => {
   return (
     <>
       <Heading as="h2" size="md" mb={4}>
-        {categoryName}
+        {category}
       </Heading>
       <PostList posts={posts} />
     </>
@@ -23,7 +21,7 @@ const CategoryPage: NextPage<Props> = ({ categoryName, posts }) => {
 };
 
 type Params = {
-  categoryId: string;
+  slug: string;
 } & ParsedUrlQuery;
 
 export const getStaticProps: GetStaticProps<Props, Params> = async ({
@@ -32,29 +30,33 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   if (!params) {
     return {
       props: {
-        categoryName: "",
+        category: "",
         posts: [],
       },
     };
   }
-  const posts = await getPosts({
-    filters: `category[equals]${params.categoryId}`,
+  const category = params.slug;
+  const posts = getAllPosts().filter((post) => {
+    if (category === "未分類" && post.category === "") {
+      return true;
+    }
+    return post.category === category;
   });
-  const { name: categoryName } = await getCategoryById(params.categoryId);
 
   return {
     props: {
-      categoryName,
+      category,
       posts,
     },
   };
 };
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
-  const categories = await getCategories();
+  const categories = await getAllCategories();
+
   const paths = categories.map((category) => ({
     params: {
-      categoryId: category.id,
+      slug: category,
     },
   }));
 

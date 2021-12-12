@@ -10,7 +10,7 @@ export const PostList = ({ posts }: Props) => {
   return posts && posts.length > 0 ? (
     <List>
       {posts.map((post) => (
-        <PostListItem post={post} key={post.id} />
+        <PostListItem post={post} key={post.title} />
       ))}
     </List>
   ) : (

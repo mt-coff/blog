@@ -6,14 +6,14 @@ import NextLink from "next/link";
 
 type Props = {
   title: string;
-  publishedAt: string;
-  category: Category;
+  created: string;
+  category?: string;
 };
 
 export const TitleDescription: VFC<Props> = ({
   title,
-  publishedAt,
-  category,
+  created,
+  category = "未分類",
 }) => {
   return (
     <Flex
@@ -27,12 +27,12 @@ export const TitleDescription: VFC<Props> = ({
       <Flex direction="row">
         <Text fontSize="sm" mr={2}>
           <Icon as={MdEditCalendar} mr={1} />
-          {formatDate(publishedAt)}
+          {formatDate(created)}
         </Text>
-        <NextLink href={`/categories/${category.id}`}>
+        <NextLink href={`/categories/${category}`}>
           <Link fontSize="sm" _hover={{ textDecor: "none" }}>
             <Icon as={MdFolder} mr={1} />
-            {category.name}
+            {category}
           </Link>
         </NextLink>
       </Flex>

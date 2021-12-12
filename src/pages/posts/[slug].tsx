@@ -9,6 +9,10 @@ import { getPosts } from "@/api/getPosts";
 import { ParsedUrlQuery } from "querystring";
 import { getPostById } from "@/api/getPostById";
 import { TitleDescription } from "@/components/TitleDescription";
+import { getPostFilePaths, getPostSource, POSTS_PATH } from "@/utils/mdxUtils";
+import path from "path";
+import fs from "fs";
+import matter from "gray-matter";
 
 type Props = {
   post?: Post;
@@ -41,38 +45,38 @@ export const getStaticProps: GetStaticProps<{}, Params> = async ({
 }) => {
   if (!params) {
     return {
-      props: {
-        mdxSource: {},
-      },
+      props: {},
     };
   }
-  const post = await getPostById(params.postId);
-  const mdxSource = await serialize(post.body, {
-    target: ["esnext"],
-    mdxOptions: {
-      rehypePlugins: [rehypePrism],
-    },
+  const src =
+    (await getPostSource(`${params.slug}.md`)) ||
+    (await getPostSource(`${params.slug}.mdx`));
+  if (!src) {
+    return {
+      props: {},
+    };
+  }
+  const { content, data } = matter(src);
+  const mdxSource = await serialize(content, {
+    mdxOptions: { rehypePlugins: [rehypePrism] },
   });
 
   return {
     props: {
       mdxSource,
-      post,
+      post: data,
     },
   };
 };
 
 type Params = {
-  postId: string;
+  slug: string;
 } & ParsedUrlQuery;
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
-  const posts = await getPosts({ limit: 100 });
-  const paths = posts.map((post) => ({
-    params: {
-      postId: post.id,
-    },
-  }));
+  const paths = getPostFilePaths()
+    .map((path) => path.replace(/.mdx?$/, ""))
+    .map((slug) => ({ params: { slug } }));
 
   return {
     paths,

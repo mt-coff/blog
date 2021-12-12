@@ -10,22 +10,24 @@ import {
 import NextLink from "next/link";
 import { MdFolder } from "react-icons/md";
 
+(categories as string[]).push("未分類");
+
 export const CategoryList = () => {
   return (
     <VStack>
       <Text fontWeight="bold">カテゴリー</Text>
       <UnorderedList w="full">
-        {categories?.map((category) => {
+        {categories?.map((category: string) => {
           return (
             <ListItem
-              key={category.id}
+              key={category}
               listStyleType="none"
               textAlign="left"
               mx={4}
               borderBottom="solid 1px"
               borderColor="gray.200"
             >
-              <NextLink href={`/categories/${category.id}`}>
+              <NextLink href={`/categories/${category}`}>
                 <Link
                   display="flex"
                   alignItems="center"
@@ -35,7 +37,7 @@ export const CategoryList = () => {
                   _hover={{ textDecor: "none", bg: "gray.300" }}
                 >
                   <Icon as={MdFolder} mr={1} />
-                  {category.name}
+                  {category}
                 </Link>
               </NextLink>
             </ListItem>

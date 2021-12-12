@@ -1,11 +1,8 @@
 import { promises as fs } from "fs";
-import fetch from "node-fetch";
+import matter from "gray-matter";
 import path from "path";
 import { cwd } from "process";
 import { directorySetup } from "./directorySetup.mjs";
-
-const API_BASE_URL = process.env.MICROCMS_API_URL;
-const MICROCMS_API_KEY = process.env.MICROCMS_API_KEY;
 
 /**
  * @param {string} resourceName
@@ -13,12 +10,24 @@ const MICROCMS_API_KEY = process.env.MICROCMS_API_KEY;
 export const generateJSON = async (resourceName) => {
   const targetDir = path.join(cwd(), "./src/data");
   await directorySetup(targetDir);
-  const response = await fetch(`${API_BASE_URL}/${resourceName}?limit=100`, {
-    headers: {
-      "X-MICROCMS-API-KEY": MICROCMS_API_KEY,
-    },
-  });
-  const { contents } = await response.json();
+  const postsPath = path.join(cwd(), "./src/posts");
+  const postDataList = await Promise.all(
+    (
+      await fs.readdir(postsPath)
+    ).map(async (filename) => {
+      const source = await fs.readFile(path.join(postsPath, filename));
+      return matter(source).data;
+    })
+  );
+  const contents = postDataList
+    .map((postData) => {
+      if (postData.hasOwnProperty(resourceName)) {
+        return postData[resourceName];
+      }
+      return null;
+    })
+    .flat()
+    .filter((content) => !!content);
 
   await fs.writeFile(
     path.join(targetDir, `${resourceName}.json`),
