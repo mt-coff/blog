@@ -1,3 +1,4 @@
+import { Meta } from "@/components/Meta";
 import { getAllCategories } from "@/utils/mdxUtils";
 import { Icon, Link, Tag } from "@chakra-ui/react";
 import { GetStaticProps, NextPage } from "next";
@@ -11,6 +12,7 @@ type Props = {
 const CategoryListPage: NextPage<Props> = ({ categories }) => {
   return (
     <>
+      <Meta />
       {categories?.map((category) => (
         <Tag key={category} mr={2} mb={2}>
           <NextLink href={`/categories/${category}`}>

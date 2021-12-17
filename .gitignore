@@ -42,3 +42,5 @@ yarn-error.log*
 
 # generated file
 /src/data
+public/image/
+!public/image/mt-coff.jpeg
