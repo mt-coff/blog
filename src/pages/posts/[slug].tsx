@@ -17,7 +17,6 @@ type Props = {
 };
 
 const PostPage: NextPage<Props> = ({ post, mdxSource }) => {
-  console.log(post);
   return (
     <>
       <Meta image={post?.filename} title={post?.title} />

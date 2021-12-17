@@ -26,7 +26,7 @@ export const Meta: VFC<Props> = ({ title, image }) => {
       <meta property="og:site_name" content="mt-coff's blog" />
       <meta
         property="og:image"
-        content={image ? `https://blog.mt-coff.me/${image}` : ""}
+        content={image ? `https://blog.mt-coff.me/${image}.png` : ""}
       />
       <title>{`mt-coff's blog${title ? " | " + title : ""}`}</title>
     </Head>

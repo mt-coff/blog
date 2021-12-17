@@ -16,7 +16,7 @@ export const CommonLayout: FC = ({ children }) => {
           maxW="64"
           px={4}
           width="100%"
-          display={{ sm: "none", md: "block" }}
+          display={{ sm: "none", md: "none", lg: "block" }}
           as="nav"
         >
           <CategoryList />
