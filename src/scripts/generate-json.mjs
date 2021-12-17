@@ -7,10 +7,9 @@ import { getAllPost } from "./getAllPost.mjs";
 /**
  * @param {string} resourceName
  */
-export const generateJSON = async (resourceName) => {
+export const generateJSON = async (resourceName, filename) => {
   const targetDir = path.join(cwd(), "./src/data");
   await directorySetup(targetDir);
-  const postsPath = path.join(cwd(), "./src/posts");
   const postDataList = await getAllPost();
   const contents = postDataList
     .map((postData) => {
@@ -23,7 +22,7 @@ export const generateJSON = async (resourceName) => {
     .filter((content) => !!content);
 
   await fs.writeFile(
-    path.join(targetDir, `${resourceName}.json`),
+    path.join(targetDir, `${filename ? filename : resourceName}.json`),
     JSON.stringify(contents)
   );
 };
