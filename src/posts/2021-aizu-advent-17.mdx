@@ -1,0 +1,151 @@
+---
+title: "TypeScriptの型だけでじゃんけん"
+created: "2021-12-17"
+category: "プログラミング"
+---
+
+<AdventCalendar
+  calendar={{
+    name: "Aizu Advent Calendar 2021",
+    url: "https://adventar.org/calendars/6636",
+  }}
+  prev={{
+    author: "natumn",
+  }}
+  next={{
+    author: "n04ln(NoahOrberg)",
+  }}
+  day={17}
+/>
+
+---
+
+何も各ネタがなかったので TypeScript の型の入門編みたいな形でなにか書けないかと思っていたところ唐突に思いついたので型でじゃんけんできるかやってみようと思います。
+
+思いついて 5 分でできるくらいには簡単なので TypeScript 初心者でも大丈夫です。
+
+## Step1 手の形の型を定義する
+
+まずはじゃんけんの手(グー、チョキ、パー)を定義しないと始まりません。
+
+今回は Rock, Scissors, Paper でやりますが、置き換えてもらって大丈夫です。
+
+```ts
+type Rock = "Rock";
+type Scissors = "Scissors";
+type Paper = "Paper";
+
+type Hand = Rock | Scissors | Paper;
+```
+
+以上で Rock, Scissors, Paper それぞれ定義できました。
+
+Rock を例にすると
+
+```ts
+// Ok
+const rock: Rock = "Rock";
+// エラー
+const hoge: Rock = "hoge";
+```
+
+のように Rock は文字列`Rock`のみ受け付ける型です。簡単ですね。
+
+そして、`Hands` は Union 型で定義されています。`Rock`か`Scissors`か`Paper`のみ受け付けます。
+
+```ts
+// Ok
+const rock: Hand = "Rock";
+const scissors: Hand = "Scissors";
+const paper: Hand = "Paper";
+// エラー
+const notHand: Hand = "Mud Hand";
+```
+
+ここまででじゃんけんの手が型で表現できました。
+
+## Step2 引き分けになったこと、勝利したことを型で表現
+
+じゃんけんは必ず勝敗と引き分けがあります。
+
+今回は簡単にするためにどの手が勝利したかを型で表現します。(引き分けを除けばどちらかが必ず勝利するため)
+
+```ts
+type Won<T extends Hand> = `${T} won`;
+```
+
+`<T extends Hand>`と`${T}`といった表現が出てきました。一つずつ簡単に説明します。
+
+`<T extends Hand>` に関しては Generics で、`T`は任意の型を取取ることができます。`T extends Hand` としているため`T`は`Hand`型のみ受け取るように制限されます。
+
+そして`${T} won`ですが、Template Literal Types を利用しています。利用するとどうなるかというと、
+
+```ts
+type Rock = "Rock";
+type Won<T extends Hand> = `${T} won`;
+type RockWon = Won<Rock>;
+// RockWonは `Rock won`となる
+```
+
+といった形で変数の埋め込みのようにできます。
+若干難しいですがじゃんけんくらいならざっくりとした理解で大丈夫です。
+
+あいこの存在を忘れていましたね。
+
+```ts
+type Drawn = "Drawn";
+```
+
+これでいいでしょう。
+
+## Step3 勝敗の判定を型で表現する
+
+さて最後は勝敗を判定する型です。
+ここで利用するのは Conditional Type です。
+どんなものかというと、
+
+```ts
+type Condition<T, U> = T extends U ? "T can inherit U" : "T cannot inherit U";
+```
+
+単に T に U が代入可能であれば`:` の左、代入不可能であれば右側を評価するものです。三項演算子と同じです。
+
+これを使って勝敗を判定する型を定義します。気合さえあれば誰でもできます。
+
+```ts
+type Judge<T extends Hand, U extends Hand> = T extends Rock
+  ? U extends Rock
+    ? Draw
+    : U extends Scissors
+    ? Win<T>
+    : Win<U>
+  : T extends Paper
+  ? U extends Rock
+    ? Win<T>
+    : U extends Scissors
+    ? Win<U>
+    : Draw
+  : U extends Rock
+  ? Win<U>
+  : U extends Scissors
+  ? Draw
+  : Win<T>;
+```
+長い！
+やっていることは単純で`Judge<T extends Hand, U extends Hand>`でそれぞれ手を受け取ります。
+
+その後は `T extends Rock ? U extends Rock ? Drawn : U extends Scissors ...` と勝ち、引き分けをConditional Typeで判別していきます。 
+
+そうすると
+```ts
+type Result = Judge<Rock, Scissors>
+const result: Result = "Rock won"
+```
+といった感じに出来て`Result`型として定義した変数には結果である`Rock won` しか入らなくなります。
+
+誰かと対戦できるわけはありませんが一応じゃんけんは型で表現できたことになるはず...?
+
+## まとめ
+じゃんけんを型で表現できました。(?)
+
+動作確認したい方は [TypeScript Playground](https://www.typescriptlang.org/play?#code/C4TwDgpgBASg9gYwNZQLxQET2Rg3AKFEigGUEBLAZ0rgCdK1Myqb69DxoAFAQ0lsYZe-dh2IB1cgDsAPABUoEAB7AIUgCYMAEjw0A+RgAMAJAG85AXygB3OFMMEx0HRsbYUAH1IVqdBl+EIWgIiaAARWh5rKUEIqKlRUKgAKQBXdQBzCHlFFTVNKBd1ABooAFVc1Q1tXXUDdAVlKoL3fCgoAH5yyvyGVvb2rrjotoGALm6m3u8WP1HBqElZOT15qAmlmTLV9onGvOqoQNpRroqpw-6Brs2VtYnzg4LmX3o1m+ktnfGoYalRh49S6IJCnRafbYAyZPBgvViUMF-KG3PSOJIwCCUVIAG2AjDSmWy7lKx1R+HwCDslDxtExOOAEwxWNxgmONjsoiAA) へ！

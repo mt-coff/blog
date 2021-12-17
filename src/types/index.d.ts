@@ -6,13 +6,3 @@ type Post = {
   created: string;
   filename: string;
 };
-
-// type Category = {
-//   id: string;
-//   name: string;
-// };
-
-// type Tag = {
-//   id: string;
-//   name: string;
-};

@@ -1,4 +1,3 @@
-import { getPosts } from "@/api/getPosts";
 import { getPostFilePaths, POSTS_PATH } from "@/utils/mdxUtils";
 import type { GetStaticProps, NextPage } from "next";
 import React from "react";

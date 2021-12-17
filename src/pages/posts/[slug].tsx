@@ -5,14 +5,11 @@ import { MDXRemote } from "next-mdx-remote";
 import { MDXComponents } from "../../components/MDXComponents";
 import rehypePrism from "@mapbox/rehype-prism";
 import Head from "next/head";
-import { getPosts } from "@/api/getPosts";
 import { ParsedUrlQuery } from "querystring";
-import { getPostById } from "@/api/getPostById";
 import { TitleDescription } from "@/components/TitleDescription";
 import { getPostFilePaths, getPostSource, POSTS_PATH } from "@/utils/mdxUtils";
-import path from "path";
-import fs from "fs";
 import matter from "gray-matter";
+import { Meta } from "@/components/Meta";
 
 type Props = {
   post?: Post;
@@ -20,8 +17,10 @@ type Props = {
 };
 
 const PostPage: NextPage<Props> = ({ post, mdxSource }) => {
+  console.log(post);
   return (
     <>
+      <Meta image={post?.filename} title={post?.title} />
       <Head>
         <link
           rel="stylesheet"
@@ -64,7 +63,7 @@ export const getStaticProps: GetStaticProps<{}, Params> = async ({
   return {
     props: {
       mdxSource,
-      post: data,
+      post: { filename: params.slug, ...data },
     },
   };
 };
