@@ -12,7 +12,7 @@ export const Meta: VFC<Props> = ({ title, image }) => {
 
   return (
     <Head>
-      <meta name="description" content="mt_coff's blog" />
+      <meta name="description" content="blog.mt_coff" />
       <meta property="og:url" content="https://blog.mt-coff.me" />
       <meta
         property="og:type"
@@ -20,15 +20,15 @@ export const Meta: VFC<Props> = ({ title, image }) => {
       />
       <meta
         property="og:title"
-        content={`mt-coff's blog${title ? " | " + title : ""}`}
+        content={`blog.mt-coff ${title ? " | " + title : ""}`}
       />
-      <meta property="og:description" content="mt-coff's blog" />
-      <meta property="og:site_name" content="mt-coff's blog" />
+      <meta property="og:description" content="mt_coff's blog." />
+      <meta property="og:site_name" content="blog.mt_coff" />
       <meta
         property="og:image"
-        content={image ? `https://blog.mt-coff.me/${image}.png` : ""}
+        content={image ? `https://blog.mt-coff.me/image/${image}.png` : ""}
       />
-      <title>{`mt-coff's blog${title ? " | " + title : ""}`}</title>
+      <title>{`blog.mt_coff${title ? " | " + title : ""}`}</title>
     </Head>
   );
 };
