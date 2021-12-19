@@ -9,7 +9,13 @@ export const CommonLayout: FC = ({ children }) => {
     <Flex h="100vh" direction="column">
       <Header />
       <Flex flex="1" direction="row" mx={{ sm: 0, md: 8, lg: 16 }} my="8">
-        <Box as="main" flex="1" px={{ sm: 0, md: 4 }}>
+        <Box
+          as="main"
+          flex="1"
+          px={{ sm: 3, md: 4 }}
+          width="100%"
+          overflow="auto"
+        >
           {children}
         </Box>
         <VStack

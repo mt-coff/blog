@@ -1,3 +1,4 @@
+import React from "react";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
@@ -10,6 +11,7 @@ import { TitleDescription } from "@/components/TitleDescription";
 import { getPostFilePaths, getPostSource, POSTS_PATH } from "@/utils/mdxUtils";
 import matter from "gray-matter";
 import { Meta } from "@/components/Meta";
+import { Box } from "@chakra-ui/react";
 
 type Props = {
   post?: Post;
@@ -29,7 +31,9 @@ const PostPage: NextPage<Props> = ({ post, mdxSource }) => {
       {mdxSource ? (
         <>
           {post && <TitleDescription {...post} />}
-          <MDXRemote {...mdxSource} components={MDXComponents()} />
+          <Box as="article" flex={1}>
+            <MDXRemote {...mdxSource} components={MDXComponents()} />
+          </Box>
         </>
       ) : (
         <></>
