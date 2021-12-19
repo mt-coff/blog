@@ -39,3 +39,8 @@ yarn-error.log*
 # env
 .env
 .envrc
+
+# generated data
+src/data/*
+public/image/*
+!public/image/mt_coff.jpeg
