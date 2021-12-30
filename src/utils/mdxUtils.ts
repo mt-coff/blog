@@ -1,6 +1,7 @@
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
+import { compareDesc } from "date-fns";
 
 export const POSTS_PATH = path.join(process.cwd(), "src/posts");
 
@@ -22,35 +23,41 @@ export const getPostSource = async (filePath: string) => {
 };
 
 export const getAllCategories = async () => {
-  return (
-    await Promise.all(
-      getPostFilePaths().map(async (path) => {
-        if (path.endsWith(".mdx") || path.endsWith(".md")) {
-          const source = await getPostSource(path);
-          if (!source) {
-            return null;
-          }
-          const { data } = matter(source);
-          return (data as Post).category;
-        }
-      })
+  return Array.from(
+    new Set(
+      (
+        await Promise.all(
+          getPostFilePaths().map(async (path) => {
+            if (path.endsWith(".mdx") || path.endsWith(".md")) {
+              const source = await getPostSource(path);
+              if (!source) {
+                return null;
+              }
+              const { data } = matter(source);
+              return (data as Post).category;
+            }
+          })
+        )
+      ).filter((category) => category != null) as string[]
     )
-  ).filter((category) => category != null) as string[];
+  );
 };
 
 export const getAllPosts = () =>
-  getPostFilePaths().map((filepath) => {
-    const src = fs.readFileSync(path.join(POSTS_PATH, filepath));
-    const { content, data } = matter(src);
-    const { title, tags = [], category = "", created } = data;
-    const filename = filepath.replace(/.mdx?$/, "");
+  getPostFilePaths()
+    .map((filepath) => {
+      const src = fs.readFileSync(path.join(POSTS_PATH, filepath));
+      const { content, data } = matter(src);
+      const { title, tags = [], category = "", created } = data;
+      const filename = filepath.replace(/.mdx?$/, "");
 
-    return {
-      title,
-      content,
-      tags,
-      category,
-      created,
-      filename,
-    };
-  });
+      return {
+        title,
+        content,
+        tags,
+        category,
+        created,
+        filename,
+      };
+    })
+    .sort((a, b) => compareDesc(new Date(a.created), new Date(b.created)));
