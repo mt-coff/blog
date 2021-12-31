@@ -11,7 +11,7 @@ export const CommonLayout: FC<Props> = ({ children, categories }) => {
   return (
     <Flex h="100vh" direction="column">
       <Header />
-      <Flex flex="1" direction="row" mx={{ sm: 0, md: 8, lg: 16 }} my="8">
+      <Flex flex="1" direction="row" mx={{ base: 2, md: 8, lg: 16 }} my="8">
         <Box
           as="main"
           flex="1"
