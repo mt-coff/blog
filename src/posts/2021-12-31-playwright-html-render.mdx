@@ -1,0 +1,28 @@
+---
+title: "PlaywrightだけでHTMLをレンダリング"
+created: "2021-12-31 15:00"
+category: "プログラミング"
+---
+
+Playwright を使って HTML をレンダリングをしたかったのですが、`goto` を利用して localhost にアクセスする方法ばかりヒットするのでメモとして残しておきます。
+
+## setContent を使う
+
+`setContent` を使えばそれで任意の HTML を Playwright 上でレンダリングすることができます。
+
+一連の流れをコードで残します。`playwright-chromium` を利用しているので `playwright/core` を利用している場合いい感じに置き換えてください。
+
+```js
+import { chromium } from "playwright-chromium"
+
+const browser = await chromium.launch();
+const ctx = await browser.newContext();
+const page = await ctx.newPage();
+await page.setContent('<div>Hello World</div>');
+```
+
+これだけです。
+
+ドキュメントのリンクは以下
+
+[https://playwright.dev/docs/api/class-frame#frame-set-content]()
