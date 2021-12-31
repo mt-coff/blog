@@ -22,28 +22,21 @@ export const getPostSource = async (filePath: string) => {
   }
 };
 
-export const getAllCategories = async () => {
-  return Array.from(
+export const getAllCategories = () => {
+  const posts = getAllPosts();
+  const categories = Array.from(
     new Set(
-      (
-        await Promise.all(
-          getPostFilePaths().map(async (path) => {
-            if (path.endsWith(".mdx") || path.endsWith(".md")) {
-              const source = await getPostSource(path);
-              if (!source) {
-                return null;
-              }
-              const { data } = matter(source);
-              return (data as Post).category;
-            }
-          })
-        )
-      ).filter((category) => category != null) as string[]
+      posts
+        .map((post) => post.category)
+        .filter((category): category is string => !!category)
     )
   );
+  categories.push("未分類");
+
+  return categories;
 };
 
-export const getAllPosts = () =>
+export const getAllPosts = (): Post[] =>
   getPostFilePaths()
     .map((filepath) => {
       const src = fs.readFileSync(path.join(POSTS_PATH, filepath));

@@ -8,19 +8,26 @@ import rehypePrism from "@mapbox/rehype-prism";
 import Head from "next/head";
 import { ParsedUrlQuery } from "querystring";
 import { TitleDescription } from "@/components/TitleDescription";
-import { getPostFilePaths, getPostSource, POSTS_PATH } from "@/utils/mdxUtils";
+import {
+  getAllCategories,
+  getPostFilePaths,
+  getPostSource,
+  POSTS_PATH,
+} from "@/utils/mdxUtils";
 import matter from "gray-matter";
 import { Meta } from "@/components/Meta";
 import { Box } from "@chakra-ui/react";
+import { CommonLayout } from "@/components/CommonLayout";
 
 type Props = {
   post?: Post;
+  categories: string[];
   mdxSource?: MDXRemoteSerializeResult;
 };
 
-const PostPage: NextPage<Props> = ({ post, mdxSource }) => {
+const PostPage: NextPage<Props> = ({ post, mdxSource, categories }) => {
   return (
-    <>
+    <CommonLayout categories={categories}>
       <Meta image={post?.filename} title={post?.title} />
       <Head>
         <link
@@ -38,16 +45,19 @@ const PostPage: NextPage<Props> = ({ post, mdxSource }) => {
       ) : (
         <></>
       )}
-    </>
+    </CommonLayout>
   );
 };
 
 export const getStaticProps: GetStaticProps<{}, Params> = async ({
   params,
 }) => {
+  const categories = getAllCategories();
   if (!params) {
     return {
-      props: {},
+      props: {
+        categories,
+      },
     };
   }
   const src =
@@ -55,7 +65,9 @@ export const getStaticProps: GetStaticProps<{}, Params> = async ({
     (await getPostSource(`${params.slug}.mdx`));
   if (!src) {
     return {
-      props: {},
+      props: {
+        categories,
+      },
     };
   }
   const { content, data } = matter(src);
@@ -67,6 +79,7 @@ export const getStaticProps: GetStaticProps<{}, Params> = async ({
     props: {
       mdxSource,
       post: { filename: params.slug, ...data },
+      categories,
     },
   };
 };

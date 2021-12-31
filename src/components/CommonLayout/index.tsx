@@ -4,7 +4,10 @@ import { CategoryList } from "../CategoryList";
 import { Footer } from "../Footer";
 import { Header } from "../Header";
 
-export const CommonLayout: FC = ({ children }) => {
+type Props = {
+  categories: string[];
+};
+export const CommonLayout: FC<Props> = ({ children, categories }) => {
   return (
     <Flex h="100vh" direction="column">
       <Header />
@@ -25,7 +28,7 @@ export const CommonLayout: FC = ({ children }) => {
           display={{ sm: "none", md: "none", lg: "block" }}
           as="nav"
         >
-          <CategoryList />
+          <CategoryList categories={categories} />
         </VStack>
       </Flex>
       <Footer />

@@ -1,3 +1,4 @@
+import { CommonLayout } from "@/components/CommonLayout";
 import { PostList } from "@/components/PostList";
 import { getAllCategories, getAllPosts } from "@/utils/mdxUtils";
 import { Heading } from "@chakra-ui/react";
@@ -7,16 +8,17 @@ import { ParsedUrlQuery } from "querystring";
 type Props = {
   category: string;
   posts: Post[];
+  categories: string[];
 };
 
-const CategoryPage: NextPage<Props> = ({ category, posts }) => {
+const CategoryPage: NextPage<Props> = ({ category, posts, categories }) => {
   return (
-    <>
+    <CommonLayout categories={categories}>
       <Heading as="h2" size="md" mb={4}>
         {category}
       </Heading>
       <PostList posts={posts} />
-    </>
+    </CommonLayout>
   );
 };
 
@@ -27,11 +29,13 @@ type Params = {
 export const getStaticProps: GetStaticProps<Props, Params> = async ({
   params,
 }) => {
+  const categories = getAllCategories();
   if (!params) {
     return {
       props: {
         category: "",
         posts: [],
+        categories,
       },
     };
   }
@@ -47,6 +51,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
     props: {
       category,
       posts,
+      categories,
     },
   };
 };

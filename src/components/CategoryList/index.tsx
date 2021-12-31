@@ -1,4 +1,3 @@
-import categories from "@/data/categories.json";
 import {
   Link,
   ListItem,
@@ -8,11 +7,13 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
+import { VFC } from "react";
 import { MdFolder } from "react-icons/md";
 
-(categories as string[]).push("未分類");
-
-export const CategoryList = () => {
+type Props = {
+  categories: string[];
+};
+export const CategoryList: VFC<Props> = ({ categories }) => {
   return (
     <VStack>
       <Text fontWeight="bold">カテゴリー</Text>

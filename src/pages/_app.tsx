@@ -1,11 +1,10 @@
+import { ChakraProvider } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import { theme } from "../config/chakra";
-import { CommonLayout } from "../components/CommonLayout";
-import * as gtag from "../lib/gtag";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 import Script from "next/script";
+import { useEffect } from "react";
+import { theme } from "../config/chakra";
+import * as gtag from "../lib/gtag";
 
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -44,9 +43,7 @@ function App({ Component, pageProps }: AppProps) {
         </>
       )}
       <ChakraProvider theme={theme}>
-        <CommonLayout>
-          <Component {...pageProps} />
-        </CommonLayout>
+        <Component {...pageProps} />
       </ChakraProvider>
     </>
   );
