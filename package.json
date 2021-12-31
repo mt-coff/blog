@@ -5,7 +5,7 @@
     "gen": "node src/scripts/runGenerate.mjs",
     "predev": "npm run gen",
     "dev": "next dev",
-    "prebuild": "npm run gen",
+    "prebuild": "npx playwright install && npm run gen",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
