@@ -25,7 +25,7 @@ export const MDXComponents = (title?: string) => ({
   ul: (props: Props) => <UnorderedList py={2} ml={8} {...props} />,
   ol: (props: Props) => <OrderedList py={2} ml={8} {...props} />,
   li: (props: Props) => <ListItem {...props} />,
-  p: (props: Props) => <Text py={2} {...props} />,
+  p: (props: Props) => <Text whiteSpace={"pre-line"} py={2} {...props} />,
   inlineCode: (props: Props) => <Code px={1.5} {...props} />,
   AdventCalendar: (props: React.ComponentProps<typeof AdventCalendar>) => (
     <AdventCalendar {...props} />
