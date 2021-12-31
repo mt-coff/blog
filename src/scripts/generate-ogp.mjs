@@ -26,7 +26,7 @@ export const generateOGP = async (posts) => {
   });
   const page = await ctx.newPage();
   const genScreenshot = async (html, filename) => {
-    await page.setContent(html);
+    await page.setContent(html, { waitUntil: "load" });
     await page.screenshot({
       omitBackground: false,
       path: path.join(process.cwd(), `./public/image/${filename}.png`),
